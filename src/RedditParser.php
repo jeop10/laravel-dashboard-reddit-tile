@@ -6,8 +6,8 @@ use Carbon\Carbon;
 use DateTimeZone;
 use Illuminate\Support\Str;
 
-class RedditParser {
-
+class RedditParser
+{
     const PAPER_ICON = 'paper_icon';
     const WEB_ICON = 'web_icon';
 
@@ -32,6 +32,7 @@ class RedditParser {
     public function parse()
     {
         $this->list = json_decode($this->list);
+
         return $this->getThings();
     }
 
@@ -67,8 +68,8 @@ class RedditParser {
     private function convertNumber($number, $precision = 2, $divisors = null)
     {
         // Setup default $divisors if not provided
-        if (!isset($divisors)) {
-            $divisors = array(
+        if (! isset($divisors)) {
+            $divisors = [
                 pow(1000, 0) => '', // 1000^0 == 1
                 pow(1000, 1) => 'k', // Thousand
                 pow(1000, 2) => 'M', // Million
@@ -76,7 +77,7 @@ class RedditParser {
                 pow(1000, 4) => 'T', // Trillion
                 pow(1000, 5) => 'Qa', // Quadrillion
                 pow(1000, 6) => 'Qi', // Quintillion
-            );
+            ];
         }
 
         // Loop through each $divisor and find the
@@ -91,6 +92,7 @@ class RedditParser {
         // We found our match, or there were no matches.
         // Either way, use the last defined value for $divisor.
         $result = $number / $divisor;
+
         return number_format($result, $precision) + 0 . $shorthand;
     }
 
@@ -98,6 +100,7 @@ class RedditParser {
     {
         $carbon = Carbon::createFromTimestampUTC($created_utc);
         $configTimezone = config("dashboard.tiles.reddit.general.timezone");
+
         return Redditparser::dateForHumans($carbon, $configTimezone);
     }
 
@@ -131,11 +134,10 @@ class RedditParser {
             return $thumbnail;
         } elseif ($thumbnail == 'image' && Str::contains($item->url, ['redd'])) {
             return $item->url;
-        } elseif($item->is_self) {
+        } elseif ($item->is_self) {
             return self::PAPER_ICON;
         } else {
             return self::WEB_ICON;
         }
     }
-
 }

@@ -4,8 +4,8 @@ namespace Dustycode\RedditTile;
 
 use Spatie\Dashboard\Models\Tile;
 
-class RedditStore {
-
+class RedditStore
+{
     private Tile $tile;
 
     public static function make(string $configurationName)

@@ -26,10 +26,10 @@ class RedditTileComponent extends Component
     {
         $config = config("dashboard.tiles.reddit.configurations.{$this->configurationName}");
 
-        if (!isset($config['subreddit'])
-            || !isset($config['refresh_interval_in_seconds'])
+        if (! isset($config['subreddit'])
+            || ! isset($config['refresh_interval_in_seconds'])
         ) {
-           throw new \Exception('config parameters missing on Reddit tile');
+            throw new \Exception('config parameters missing on Reddit tile');
         }
 
         return view('dashboard-reddit-tile::tile', [

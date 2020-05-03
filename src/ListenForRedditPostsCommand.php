@@ -58,6 +58,5 @@ class ListenForRedditPostsCommand extends Command
 
             Tile::firstOrCreateForName("reddit_{$key}")->putData('things', $things);
         }
-
     }
 }

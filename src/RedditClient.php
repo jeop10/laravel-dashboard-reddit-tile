@@ -4,8 +4,8 @@ namespace Dustycode\RedditTile;
 
 use Illuminate\Support\Facades\Http;
 
-class RedditClient {
-
+class RedditClient
+{
     private $subReddit;
 
     private $sortBy;
@@ -19,26 +19,27 @@ class RedditClient {
 
     public function subReddit($name)
     {
-       $this->subReddit = $name;
-       return $this;
+        $this->subReddit = $name;
+
+        return $this;
     }
 
     public function sortBy($sort)
     {
         $this->sortBy = $sort;
+
         return $this;
     }
 
     public function get()
     {
-
         $url = "https://www.reddit.com/r/{$this->subReddit}/{$this->sortBy}.json?limit=10";
 
         if ($this->testMode) {
             $results = json_decode(file_get_contents(__DIR__ . "/resources/stubs/subreddit.json"));
         } else {
             $results = Http::withHeaders([
-                'User-Agent'     => 'web:laravel-dashboard-reddit-tile:0.1',
+                'User-Agent' => 'web:laravel-dashboard-reddit-tile:0.1',
             ])
                 ->get($url)
                 ->body();
@@ -52,7 +53,4 @@ class RedditClient {
 
         return [];
     }
-
-
-
 }
