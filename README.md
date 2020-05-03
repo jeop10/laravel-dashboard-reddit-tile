@@ -6,7 +6,7 @@
 
 This tile can display a list of the post to your favorite subreddit. 
 
-![img](docs/reddit-tile.png)
+![img](docs/reddit-tile.jpg)
 
 This tile can be used on [the Laravel Dashboard](https://docs.spatie.be/laravel-dashboard).
 
