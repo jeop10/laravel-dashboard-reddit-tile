@@ -49,6 +49,18 @@ return [
 ];
 `````
 
+In app\Console\Kernel.php you should schedule the `Dustycode\RedditTile\ListenForRedditPostsCommand` to run. You can let in run every minute if you want. You could also run is less frequently if you fast updates on the dashboard aren’t that important for this tile.
+
+`````
+// in app/console/Kernel.php
+
+protected function schedule(Schedule $schedule)
+{
+    // ...
+    $schedule->command(Dustycode\RedditTile\ListenForRedditPostsCommand::class)->everyMinute();
+}
+`````
+
 In your dashboard view you use the `livewire:reddit-tile` component.
 
 ```html
