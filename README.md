@@ -29,6 +29,7 @@ return [
     'tiles' => [
         'reddit' => [
             'general' => [
+                'useragent' => 'web:laravel-dashboard-reddit-tile:0.1',
                 'timezone' => 'Your desired timezone', //Important to get the posted at
             ],
             'configurations' => [

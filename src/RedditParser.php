@@ -107,6 +107,8 @@ class RedditParser
     /**
      * To make the for human version more small
      * @param Carbon $carbon
+     * @param string $timezone
+     * @param bool $extraSmall
      * @return mixed
      */
     private static function dateForHumans(Carbon $carbon, $timezone = 'Europe/Madrid', $extraSmall = false)

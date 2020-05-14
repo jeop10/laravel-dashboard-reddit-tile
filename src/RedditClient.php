@@ -39,14 +39,13 @@ class RedditClient
             $results = json_decode(file_get_contents(__DIR__ . "/resources/stubs/subreddit.json"));
         } else {
             $results = Http::withHeaders([
-                'User-Agent' => 'web:laravel-dashboard-reddit-tile:0.1',
+                'User-Agent' => config("dashboard.tiles.reddit.general.useragent"),
             ])
                 ->get($url)
                 ->body();
         }
 
         if ($results) {
-            //List parsed?
             return RedditParser::make($results)
                 ->parse();
         }
